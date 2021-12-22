@@ -22,14 +22,10 @@ class _MyAppState extends State<MyApp> {
   double currentPage = images.length - 1.0;
   @override
   Widget build(BuildContext context) {
-    print('_MyAppStateinit images: ${images.length}');
-    print('_MyAppStateinit currentPage: ${currentPage}');
     PageController controller = PageController(initialPage: images.length - 1);
-    print('_MyAppStateinit currentPage: ${currentPage}');
     controller.addListener(() {
       setState(() {
         currentPage = controller.page;
-        print('_MyAppState currentPage: ${currentPage}');
       });
     });
     return Container(
@@ -249,7 +245,7 @@ class CardScrollWidget extends StatelessWidget {
         var primaryCardLeft = safeWidth - widthOfPrimaryCard;
         var horizontalInset = primaryCardLeft / 2;
 
-        List<Widget> cardList = new List();
+        List<Widget> cardList = [];
 
         for (var i = 0; i < images.length; i++) {
           //current 현재페이지 순서 이미지길이(개수)
@@ -261,8 +257,6 @@ class CardScrollWidget extends StatelessWidget {
                   primaryCardLeft -
                       horizontalInset * -delta * (isOnRight ? 15 : 1),
                   0.0);
-          print('스타트 : ${start}');
-          print('스타트델타 : ${delta}');
           var cardItem = Positioned.directional(
             top: padding + verticalInset * max(-delta, 0.0),
             bottom: padding + verticalInset * max(-delta, 0.0),
